@@ -1,7 +1,3 @@
-# DSF
-.....
-
-
 
 DSF（Distributed service framework）
 =============================
