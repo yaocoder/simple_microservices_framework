@@ -1,9 +1,9 @@
 //============================================================================
-// Name        : logicDispatch.cpp
+// Name        : gatewayServer.cpp
 // Author      : yaocoder
 // Version     :
 // Copyright   : Your copyright notice
-// Description : 后台逻辑分发进程，实现类似于反向代理功能
+// Description : 网关服务，实现类nginx的反向代理功能
 //============================================================================
 
 #include <stdlib.h>
@@ -87,7 +87,7 @@ void InitConfigure()
 {
 	CInitConfig initConfObj;
 	initConfObj.SetConfigFilePath(std::string("../conf/"));
-	std::string project_name = "logicDispatch";
+	std::string project_name = "gatewayServer";
 	initConfObj.InitLog4cxx(project_name);
 	if (!initConfObj.LoadConfiguration(project_name))
 	{
@@ -98,17 +98,17 @@ void InitConfigure()
 
 void SettingsAndPrint()
 {
-	utils::G<CGlobalSettings>().remote_listen_port_ = utils::G<ConfigFile>().read<int>("logicDispatch.remote.listen.port", 11001);
-	utils::G<CGlobalSettings>().thread_num_  		= utils::G<ConfigFile>().read<int>("logicDispatch.worker.thread.num", 4);
-	utils::G<CGlobalSettings>().local_listen_port_	= utils::G<ConfigFile>().read<int>("logicDispatch.local.listen.port", 10000);
-	utils::G<CGlobalSettings>().client_timeout_		= utils::G<ConfigFile>().read<int>("logicDispatch.client.timeout.s", 11);
+	utils::G<CGlobalSettings>().remote_listen_port_ = utils::G<ConfigFile>().read<int>("gatewayServer.remote.listen.port", 11001);
+	utils::G<CGlobalSettings>().thread_num_  		= utils::G<ConfigFile>().read<int>("gatewayServer.worker.thread.num", 4);
+	utils::G<CGlobalSettings>().local_listen_port_	= utils::G<ConfigFile>().read<int>("gatewayServer.local.listen.port", 10000);
+	utils::G<CGlobalSettings>().client_timeout_		= utils::G<ConfigFile>().read<int>("gatewayServer.client.timeout.s", 11);
 	utils::G<CGlobalSettings>().logicXX_port_	= utils::G<ConfigFile>().read<int>("logicXX.bind.port", 11002);
 
 
-	LOG4CXX_INFO(g_logger, "******logicDispatch.remote.listen.port = "	<< utils::G<CGlobalSettings>().remote_listen_port_	<< "******");
-	LOG4CXX_INFO(g_logger, "******logicDispatch.worker.thread.num = "	<< utils::G<CGlobalSettings>().thread_num_	 	  	<< "******");
-	LOG4CXX_INFO(g_logger, "******logicDispatch.local.listen.port= "	<< utils::G<CGlobalSettings>().local_listen_port_ 	<< "******");
-	LOG4CXX_INFO(g_logger, "******logicDispatch.client.timeout.s = "	<< utils::G<CGlobalSettings>().client_timeout_ 		<< "******");
+	LOG4CXX_INFO(g_logger, "******gatewayServer.remote.listen.port = "	<< utils::G<CGlobalSettings>().remote_listen_port_	<< "******");
+	LOG4CXX_INFO(g_logger, "******gatewayServer.worker.thread.num = "	<< utils::G<CGlobalSettings>().thread_num_	 	  	<< "******");
+	LOG4CXX_INFO(g_logger, "******gatewayServer.local.listen.port= "	<< utils::G<CGlobalSettings>().local_listen_port_ 	<< "******");
+	LOG4CXX_INFO(g_logger, "******gatewayServer.client.timeout.s = "	<< utils::G<CGlobalSettings>().client_timeout_ 		<< "******");
 	LOG4CXX_INFO(g_logger, "******logicXX.bind.port = " 			<< utils::G<CGlobalSettings>().logicXX_port_   << "******");
 
 
