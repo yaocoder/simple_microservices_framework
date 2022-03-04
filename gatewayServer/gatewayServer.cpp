@@ -102,14 +102,14 @@ void SettingsAndPrint()
 	utils::G<CGlobalSettings>().thread_num_  		= utils::G<ConfigFile>().read<int>("gatewayServer.worker.thread.num", 4);
 	utils::G<CGlobalSettings>().local_listen_port_	= utils::G<ConfigFile>().read<int>("gatewayServer.local.listen.port", 10000);
 	utils::G<CGlobalSettings>().client_timeout_		= utils::G<ConfigFile>().read<int>("gatewayServer.client.timeout.s", 11);
-	utils::G<CGlobalSettings>().logicXX_port_	= utils::G<ConfigFile>().read<int>("logicXX.bind.port", 11002);
+	utils::G<CGlobalSettings>().appServerXX_port_	= utils::G<ConfigFile>().read<int>("logicXX.bind.port", 11002);
 
 
 	LOG4CXX_INFO(g_logger, "******gatewayServer.remote.listen.port = "	<< utils::G<CGlobalSettings>().remote_listen_port_	<< "******");
 	LOG4CXX_INFO(g_logger, "******gatewayServer.worker.thread.num = "	<< utils::G<CGlobalSettings>().thread_num_	 	  	<< "******");
 	LOG4CXX_INFO(g_logger, "******gatewayServer.local.listen.port= "	<< utils::G<CGlobalSettings>().local_listen_port_ 	<< "******");
 	LOG4CXX_INFO(g_logger, "******gatewayServer.client.timeout.s = "	<< utils::G<CGlobalSettings>().client_timeout_ 		<< "******");
-	LOG4CXX_INFO(g_logger, "******logicXX.bind.port = " 			<< utils::G<CGlobalSettings>().logicXX_port_   << "******");
+	LOG4CXX_INFO(g_logger, "******appServerXX.bind.port = " 			<< utils::G<CGlobalSettings>().appServerXX_port_   << "******");
 
 
 }
