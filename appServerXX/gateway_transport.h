@@ -5,19 +5,19 @@
  *      Author: yaowei
  */
 
-#ifndef LOCAL_TRANSPORT_H_
-#define LOCAL_TRANSPORT_H_
+#ifndef GATEWAY_TRANSPORT_H_
+#define GATEWAY_TRANSPORT_H_
 
 #include "defines.h"
 #include "consumers.h"
 #include <boost/asio.hpp>
 #include <boost/date_time/posix_time/posix_time.hpp>
 
-class CLocalTransport
+class CGatewayTransport
 {
 public:
-	CLocalTransport();
-	virtual ~CLocalTransport();
+	CGatewayTransport();
+	virtual ~CGatewayTransport();
 
 public:
 
@@ -36,7 +36,7 @@ private:
 
 	void CreateWorker(void *(*func)(void *), void *arg);
 
-	static void *SetupLocalTransport(void *arg);
+	static void *SetupGatewayTransport(void *arg);
 
 	bool InitSocketFd(evutil_socket_t& sfd);
 
@@ -60,4 +60,4 @@ private:
 };
 
 
-#endif /* LOCAL_TRANSPORT_H_ */
+#endif /* GATEWAY_TRANSPORT_H_ */

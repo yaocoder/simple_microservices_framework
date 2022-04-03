@@ -1,6 +1,6 @@
 CXXFLAGS =	-O0 -g -Wall -fmessage-length=0 -DNDEBUG 
-OBJS =		appServerXX.o init_configure.o local_transport.o consumers.o \
- 			logic_operate.o 
+OBJS =		appServerXX.o init_configure.o gateway_transport.o consumers.o \
+ 			app_operate.o 
 
 LIBS =		-lboost_thread -lboost_regex -lboost_system  \
 			-llog4cxx -levent \

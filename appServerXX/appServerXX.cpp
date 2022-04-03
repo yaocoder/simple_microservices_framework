@@ -10,7 +10,7 @@
 #include <signal.h>
 #include "defines.h"
 #include "init_configure.h"
-#include "local_transport.h"
+#include "gateway_transport.h"
 #include "global_settings.h"
 #include "../public/config_file.h"
 #include "../public/utils.h"
@@ -68,14 +68,14 @@ int main(int argc, char **argv)
 
 void Run()
 {
-	CLocalTransport localTransport;
-	if (!localTransport.SetupTransport())
+	CGatewayTransport gatewayTransport;
+	if (!gatewayTransport.SetupTransport())
 	{
 		LOG4CXX_FATAL(g_logger, "SetupTransport failed.");
 		exit(EXIT_FAILURE);
 	}
 
-	localTransport.Run();
+	gatewayTransport.Run();
 }
 
 void SigUsr(int signo)
@@ -106,17 +106,17 @@ void InitConfigure()
 void SettingsAndPrint()
 {
 	utils::G<CGlobalSettings>().gateway_ip_ 	= utils::G<ConfigFile>().read<std::string> ("gatewayServer.local.ip","127.0.0.1");
-	utils::G<CGlobalSettings>().gateway_port_ 	= utils::G<ConfigFile>().read<int> ("gatewayServer.local.listen.port", 10000);
-	utils::G<CGlobalSettings>().bind_port_ 		= utils::G<ConfigFile>().read<int> ("appServer.bind.port", 10001);
-	utils::G<CGlobalSettings>().thread_num_ 	= utils::G<ConfigFile>().read<int> ("appServer.worker.thread.num", 4);
-	utils::G<CGlobalSettings>().queue_num_ 		= utils::G<ConfigFile>().read<int> ("appServer.worker.queue.num", 16);
-	utils::G<CGlobalSettings>().stats_listen_port_ = utils::G<ConfigFile>().read<int>("appServer.stats.listen.port", 10002);
+	utils::G<CGlobalSettings>().gateway_port_ 	= utils::G<ConfigFile>().read<int> ("gatewayServer.local.listen.port", 12000);
+	utils::G<CGlobalSettings>().bind_port_ 		= utils::G<ConfigFile>().read<int> ("appServerXX.bind.port", 12001);
+	utils::G<CGlobalSettings>().thread_num_ 	= utils::G<ConfigFile>().read<int> ("appServerXX.worker.thread.num", 4);
+	utils::G<CGlobalSettings>().queue_num_ 		= utils::G<ConfigFile>().read<int> ("appServerXX.worker.queue.num", 16);
+	utils::G<CGlobalSettings>().stats_listen_port_ = utils::G<ConfigFile>().read<int>("appServerXX.stats.listen.port", 10001);
 	
 	LOG4CXX_INFO(g_logger, "******gatewayServer.local.ip = " 	<< utils::G<CGlobalSettings>().gateway_ip_ << "******");
 	LOG4CXX_INFO(g_logger, "******gatewayServer.proc.port =" 		<< utils::G<CGlobalSettings>().gateway_port_<< "******");
-	LOG4CXX_INFO(g_logger, "******appServer.bind.port=" 		<< utils::G<CGlobalSettings>().bind_port_ << "******");
-	LOG4CXX_INFO(g_logger, "******appServer.worker.thread.num ="<< utils::G<CGlobalSettings>().thread_num_<< "******");
-	LOG4CXX_INFO(g_logger, "******appServer.worker.queue.num =" << utils::G<CGlobalSettings>().queue_num_<< "******");
-	LOG4CXX_INFO(g_logger, "******appServer.stats.listen.port = "  << utils::G<CGlobalSettings>().stats_listen_port_ << "******");
+	LOG4CXX_INFO(g_logger, "******appServerXX.bind.port=" 		<< utils::G<CGlobalSettings>().bind_port_ << "******");
+	LOG4CXX_INFO(g_logger, "******appServerXX.worker.thread.num ="<< utils::G<CGlobalSettings>().thread_num_<< "******");
+	LOG4CXX_INFO(g_logger, "******appServerXX.worker.queue.num =" << utils::G<CGlobalSettings>().queue_num_<< "******");
+	LOG4CXX_INFO(g_logger, "******appServerXX.stats.listen.port = "  << utils::G<CGlobalSettings>().stats_listen_port_ << "******");
 }
 
