@@ -1,5 +1,5 @@
 /*
- * net_core.cc
+ * master_thread.cc
  *
  *  Created on: Mar 4, 2013
  *      Author: yaowei

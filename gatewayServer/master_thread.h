@@ -1,5 +1,5 @@
 /*
- * net_core.h
+ * master_thread.h
  *
  *  Created on: Mar 4, 2013
  *      Author: yaowei

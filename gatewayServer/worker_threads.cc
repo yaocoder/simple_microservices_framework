@@ -1,5 +1,5 @@
 /*
- * CThread.cc
+ * worker_threads.cc
  *
  *  Created on: Mar 4, 2013
  *      Author: yaowei

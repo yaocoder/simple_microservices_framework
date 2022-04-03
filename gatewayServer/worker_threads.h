@@ -1,5 +1,5 @@
 /*
- * CThread.h
+ * worker_threads.h
  *
  *  Created on: Mar 4, 2013
  *      Author: yaowei

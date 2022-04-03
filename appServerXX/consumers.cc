@@ -94,8 +94,8 @@ void* consumers::consumerRun(void *p) {
 		message=anConsumer->getData();
 		if(message.length() > 0)
 		{
-			CLogicOperate logic;
-			logic.StartLogicOpt(message);
+			CAppOperate logic;
+			logic.StartAppOpt(message);
 		}
 	}
 

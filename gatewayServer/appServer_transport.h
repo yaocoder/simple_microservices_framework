@@ -1,12 +1,12 @@
 /*
- * local_transport.h
+ * appServer_transport.h
  *
  *  Created on: Mar 7, 2013
  *      Author: yaowei
  */
 
-#ifndef LOCAL_TRANSPORT_H_
-#define LOCAL_TRANSPORT_H_
+#ifndef APPSERVER_TRANSPORT_H_
+#define APPSERVER_TRANSPORT_H_
 
 #include "defines.h"
 #include <boost/thread.hpp>
@@ -56,4 +56,4 @@ private:
 	static boost::mutex mutex_;
 };
 
-#endif /* LOCAL_TRANSPORT_H_ */
+#endif /* APPSERVER_TRANSPORT_H_ */
