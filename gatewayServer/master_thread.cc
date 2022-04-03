@@ -7,7 +7,7 @@
 
 #include "master_thread.h"
 #include "worker_threads.h"
-#include "local_transport.h"
+#include "appServer_transport.h"
 #include "global_settings.h"
 #include "../public/utils.h"
 #include "../public/socket_wrapper.h"
@@ -74,8 +74,8 @@ bool CMasterThread::InitMasterThread()
 	if(!work_thread_ptr_->InitThread(main_base_))
 		return false;
 
-	/* 建立 localTransport(TCP) 来和逻辑处理进程进行通信 */
-	CLocalTransport::GetInstance()->SetupLocalTransport();
+	/* 建立 AppServerTransport(TCP) 来和微服务进程进行通信 */
+	CAppServerTransport::GetInstance()->SetupAppServerTransport();
 
 	return true;
 }
@@ -121,7 +121,7 @@ void CMasterThread::AcceptCb(evutil_socket_t listen_socket, short event, void* a
 		return;
 	}
 
-	/* 防止分发进程和业务进程之间出现串话现象（用id和sfd对应） */
+	/* 防止网关进程和微服务进程之间出现串话现象（用id和sfd对应） */
 	id_ = GetClientfdMapId();
 	map_csfd_id_.erase(sfd);
 	map_csfd_id_.insert(sfd, id_);

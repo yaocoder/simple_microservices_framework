@@ -8,7 +8,7 @@
 #include "worker_threads.h"
 #include "json_opt.h"
 #include "master_thread.h"
-#include "local_transport.h"
+#include "appServer_transport.h"
 #include "global_settings.h"
 #include "../public/utils.h"
 #include "../public/message.h"
@@ -236,6 +236,7 @@ void CWorkerThread::ClientTcpReadCb(struct bufferevent *bev, void *arg)
 		}
 	}
 
+	/*对客户端消息进行处理，转发给微服务进程*/
 	std::string str_recv(c->rBuf, c->rlen);
 	if(utils::FindCRLF(str_recv))
 	{
@@ -263,7 +264,7 @@ bool CWorkerThread::ClientInMessageOpt(const conn* c)
 	}
 
 	json_string2logic.append(CRLF);
-	if(!CLocalTransport::GetInstance()->SendToLogicModule(json_string2logic.c_str(), logic_module_type, c))
+	if(!CAppServerTransport::GetInstance()->SendToAppServerModule(json_string2logic.c_str(), logic_module_type, c))
 	{
 		return false;
 	}

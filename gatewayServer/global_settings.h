@@ -13,7 +13,7 @@ class CGlobalSettings
 {
 public:
 	int remote_listen_port_;
-	int local_listen_port_;
+	int appServer_listen_port_;
 	unsigned int thread_num_;
 	int client_timeout_;
 

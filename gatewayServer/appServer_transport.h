@@ -11,24 +11,24 @@
 #include "defines.h"
 #include <boost/thread.hpp>
 
-class CLocalTransport
+class CAppServerTransport
 {
 
 public:
 
-	static CLocalTransport* GetInstance();
+	static CAppServerTransport* GetInstance();
 
-	void SetupLocalTransport();
+	void SetupAppServerTransport();
 
-	bool SendToLogicModule(const char* message, const std::string& module_type, const conn* c);
+	bool SendToAppServerModule(const char* message, const std::string& module_type, const conn* c);
 
 private:
 
-	CLocalTransport();
+	CAppServerTransport();
 
-	bool InitLocalListenSocket(evutil_socket_t& listen_socket);
+	bool InitAppServerListenSocket(evutil_socket_t& listen_socket);
 
-	void CreateThreadForListenLocal(void *(*func)(void *), void *arg);
+	void CreateThreadForListenAppServer(void *(*func)(void *), void *arg);
 
 	static void *ReadLibevent(void *arg);
 
@@ -44,14 +44,14 @@ private:
 
 	evutil_socket_t sfd_;
 
-	static CLocalTransport* local_transport_ptr_;
+	static CAppServerTransport* appServer_transport_ptr_;
 
 
 	struct event_base 	*main_base_;
-	struct event		*local_listen_event_;
-	evutil_socket_t 	local_listen_socket_;
+	struct event		*appServer_listen_event_;
+	evutil_socket_t 	appServer_listen_socket_;
 
-	static std::map<std::string, int>  map_logic_sfd_;		//连接分发进程的业务进程sfd-->业务进程标识
+	static std::map<std::string, int>  map_appServer_sfd_;		//连接网关进程的微服务进程的sfd-->业务微服务进程标识
 
 	static boost::mutex mutex_;
 };
